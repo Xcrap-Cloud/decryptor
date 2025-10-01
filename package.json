@@ -1,0 +1,35 @@
+{
+  "name": "@xcrap/decryptor",
+  "version": "0.0.1",
+  "description": "",
+  "files": [
+    "dist/*",
+    "!/**/__tests__"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "xcrap",
+    "decryptor",
+    "web scraping"
+  ],
+  "author": "Marcuth",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.6.1",
+    "@xcrap/axios-client": "^0.0.8",
+    "@xcrap/core": "*",
+    "@xcrap/got-scraping-client": "^0.0.5",
+    "@xcrap/puppeteer-client": "^0.0.4",
+    "ts-jest": "^29.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@xcrap/core": "^0.2.1"
+  }
+}
