@@ -1,2 +1,2 @@
 export * from "./decryptor"
-export * from "./decorator"
+export * from "./factory"

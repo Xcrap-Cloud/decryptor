@@ -1,4 +1,4 @@
-import { HttpResponse, HttpClientFetchOptions, HttpFetchManyOptions } from "@xcrap/core"
+import { HttpResponse, HttpClientFetchOptions, HttpFetchManyOptions, HttpClient } from "@xcrap/core"
 import * as crypto from "node:crypto"
 
 export type DecryptConfig = {
@@ -7,6 +7,11 @@ export type DecryptConfig = {
     algorithm: string
     key: { encoding: BufferEncoding, value: string }
     iv: { encoding: BufferEncoding, value: string }
+}
+
+export type DecryptableClient = {
+    fetch: Function
+    fetchMany: Function
 }
 
 const decryptBody = (
@@ -62,5 +67,17 @@ export function injectDecryptor<T extends { fetch: Function, fetchMany: Function
     }
 
     return wrapper
+}
+
+export function decryptResponse(
+    response: HttpResponse,
+    config: DecryptConfig
+): HttpResponse {
+    if (response.status >= 200 && response.status < 300 && response.body) {
+        const decryptedBody = decryptBody(response.text, config)
+        return new HttpResponse({ ...response, body: decryptedBody })
+    }
+
+    return response
 }
 
